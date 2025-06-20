@@ -2,9 +2,45 @@
 title: "Economic Connectedness"
 author: "Isabella Alba"
 format: html
+execute:
+  echo: FALSE
+  warning: FALSE
 ---
 
 ```{r}
+#| label: libraries
+#| #| setup: true
 library(primer.data)
 library(tidyverse)
+```
+
+```{r}
+#| label: Population v. Connectedness Scatterplot
+connectedness |>
+    drop_na() |>
+    ggplot(aes(x=population, y=connectedness)) + 
+    geom_point(size = 0.7) +
+    geom_smooth(method = "lm", se = FALSE, color = "hotpink", linetype = "solid", formula= y~x) +
+    scale_x_log10(labels = scales::comma_format())+
+    labs(
+        title = "US County Populations versus Economic Connectedness",
+        subtitle = "Population size does not matter to EC",
+        x = "Population",
+        y = "Economic Connectedness",
+        caption = "Opportunity Insights (tidyverse package)"
+    )
+```
+
+```{r}
+ggplot(connectedness, aes(x = population)) +
+  geom_histogram(bins = 100, fill = "skyblue", color = "black", na.rm = TRUE) +
+  scale_x_log10(labels = scales::comma_format()) +  # avoid scientific notation
+  labs(
+    title = "US County Populations (2018)",
+    subtitle = "County populations are highly right skewed",
+    x = "Population",
+    y = "# of Counties",
+    caption = "Opportunity Insights"
+  ) +
+  theme_minimal()
 ```
