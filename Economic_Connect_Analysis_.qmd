@@ -8,11 +8,14 @@ execute:
 ---
 
 ```{r}
+#| label: libraries
+#| #| setup: true
 library(primer.data)
 library(tidyverse)
 ```
 
 ```{r}
+#| label: Population v. Connectedness Scatterplot
 connectedness |>
     drop_na() |>
     ggplot(aes(x=population, y=connectedness)) + 
