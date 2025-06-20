@@ -1,0 +1,10 @@
+---
+title: "Economic Connectedness"
+author: "Isabella Alba"
+format: html
+---
+
+```{r}
+library(primer.data)
+library(tidyverse)
+```
